@@ -4,8 +4,9 @@
 #include <ESPmDNS.h>
 #include <Update.h>
 
-const char* ssid = "your_wifi_ssid";
-const char* password = "your_wifi_password";
+const char* ssid = "DESKTOP-O841IQH 3323";
+const char* password = "38=448qQ";
+
 
 WebServer server(80);
 

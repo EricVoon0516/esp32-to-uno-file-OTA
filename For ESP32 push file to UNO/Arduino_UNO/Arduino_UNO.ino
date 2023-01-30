@@ -1,13 +1,24 @@
+#include <EEPROM.h>
+
 void setup() {
-  // Start the serial communication
-  Serial.begin(115200);
+  Serial.begin(9600); // start serial communication at 9600 baud
 }
 
 void loop() {
-  // Receive the code file from the ESP32
+  int incomingByte = 0; // variable to store incoming data
+  int address = 0; // starting address for storing data
+
+  // wait for incoming data from ESP32
   if (Serial.available() > 0) {
-    String codeFile = Serial.readString();
-    // Process the code file
-    // ...
+    incomingByte = Serial.read();
+
+    // write incoming data to flash memory
+    EEPROM.write(address, incomingByte);
+    address++;
+
+    // increment the address for the next incoming byte
+    if (address == EEPROM.length()) {
+      address = 0;
+    }
   }
 }
